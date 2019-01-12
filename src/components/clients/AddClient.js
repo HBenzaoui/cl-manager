@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+// import { compose } from 'redux';
+// import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { firestoreConnect } from 'react-redux-firebase';
 
 class AddClient extends Component {
   state = {
@@ -11,6 +16,24 @@ class AddClient extends Component {
   };
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const newClient = this.state;
+
+    const { firestore, history } = this.props;
+
+    //If there is no balance make it 0
+
+    if (newClient.balance === '') {
+      newClient.balance = 0;
+    }
+
+    firestore
+      .add({ collection: 'clients' }, newClient)
+      .then(() => history.push('/'));
+  };
 
   render() {
     return (
@@ -25,7 +48,7 @@ class AddClient extends Component {
         <div className="card">
           <div className="card-header">Add Client</div>
           <div className="card-body">
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label htmlFor="firstName">First Name</label>
                 <input
@@ -82,12 +105,12 @@ class AddClient extends Component {
                   value={this.state.balance}
                 />
               </div>
+              <input
+                type="submit"
+                value="Submit"
+                className="btn btn-success btn-block"
+              />
             </form>
-            <input
-              type="submit"
-              value="Submit"
-              className="btn btn-success btn-block"
-            />
           </div>
         </div>
       </div>
@@ -95,4 +118,8 @@ class AddClient extends Component {
   }
 }
 
-export default AddClient;
+AddClient.propTypes = {
+  firestore: PropTypes.object.isRequired
+};
+
+export default firestoreConnect()(AddClient);
