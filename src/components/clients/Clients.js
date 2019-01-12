@@ -5,6 +5,7 @@ export class Clients extends Component {
   render() {
     const clients = [
       {
+        id: 1,
         firstName: 'Hamza',
         lastName: 'Benzaoui',
         email: 'hamzapdd@gmail.com',
@@ -12,16 +13,18 @@ export class Clients extends Component {
         balance: '100'
       },
       {
-        firstName: 'Hamza',
-        lastName: 'Benzaoui',
-        email: 'hamzapdd@gmail.com',
-        phone: '+213-661-45-81-97',
+        id: 2,
+        firstName: 'Hadjer',
+        lastName: 'Barka',
+        email: 'Hadjer@gmail.com',
+        phone: '+213-00-00-00-00',
         balance: '1300'
       },
       {
-        firstName: 'Hamza',
-        lastName: 'Benzaoui',
-        email: 'hamzapdd@gmail.com',
+        id: 3,
+        firstName: 'Mido',
+        lastName: 'Benz',
+        email: 'mido@gmail.com',
         phone: '+213-661-45-81-97',
         balance: '150.10'
       }
