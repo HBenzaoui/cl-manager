@@ -8,8 +8,48 @@ import Spinner from '../layout/Spinner';
 import classnames from 'classnames';
 
 class ClientDetails extends Component {
+  state = {
+    showBalanceUpdate: false,
+    balanceUpdateAmount: ''
+  };
+
+  handleChange = e => this.setState({[e.target.name]: e.target.value});
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state.balanceUpdateAmount)
+  };
+
   render() {
     const { client } = this.props;
+    const { showBalanceUpdate, balanceUpdateAmount } = this.state;
+
+    let balanceForm = '';
+    // iff balance should diplay
+    if (showBalanceUpdate) {
+      balanceForm = (
+        <form onSubmit={this.handleSubmit}>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              name="balanceUpdateAmount"
+              placeholder="Add new balance"
+              value={balanceUpdateAmount}
+              onChange={this.handleChange}
+            />
+            <div className="input-group-append">
+              <input
+                type="submit"
+                value="Update"
+                className="btn btn-outline-success"
+              />
+            </div>
+          </div>
+        </form>
+      );
+    } else {
+      balanceForm = null;
+    }
 
     if (client) {
       return (
@@ -53,9 +93,24 @@ class ClientDetails extends Component {
                       })}
                     >
                       {parseFloat(client.balance).toFixed(2)} DA
-                    </span>
+                    </span>{' '}
+                    <small>
+                      <a
+                        href="#!"
+                        onClick={() =>
+                          this.setState({
+                            showBalanceUpdate: !this.state.showBalanceUpdate
+                          })
+                        }
+                      >
+                        <i
+                          className="fas fa-edit"
+                          style={{ color: 'Indigo' }}
+                        />
+                      </a>
+                    </small>
                   </h3>
-                  {/* @TODO - Balance form */}
+                  {balanceForm}
                 </div>
               </div>
               <hr />
@@ -77,7 +132,7 @@ class ClientDetails extends Component {
   }
 }
 
-ClientDetails.PropTypes = {
+ClientDetails.propTypes = {
   firestore: PropTypes.object.isRequired
 };
 
