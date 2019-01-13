@@ -16,7 +16,16 @@ class ClientDetails extends Component {
   handleChange = e => this.setState({[e.target.name]: e.target.value});
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.balanceUpdateAmount)
+    const {client, firestore} =this.props;
+    const {balanceUpdateAmount} =this.state;
+
+    const clientUpdate ={
+      balance: parseFloat(balanceUpdateAmount)
+    }
+    
+    // update in firestore
+    firestore.update({collection: 'clients', doc: client.id}, clientUpdate)
+
   };
 
   render() {
@@ -24,7 +33,8 @@ class ClientDetails extends Component {
     const { showBalanceUpdate, balanceUpdateAmount } = this.state;
 
     let balanceForm = '';
-    // iff balance should diplay
+
+    // if balance should diplay
     if (showBalanceUpdate) {
       balanceForm = (
         <form onSubmit={this.handleSubmit}>
@@ -89,7 +99,7 @@ class ClientDetails extends Component {
                     <span
                       className={classnames({
                         'text-danger': client.balance > 0,
-                        'text-success': client.balance === 0
+                        'text-success': client.balance < 0,
                       })}
                     >
                       {parseFloat(client.balance).toFixed(2)} DA
