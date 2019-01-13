@@ -14,6 +14,8 @@ class ClientDetails extends Component {
   };
 
   handleChange = e => this.setState({[e.target.name]: e.target.value});
+
+  //Update balance
   handleSubmit = e => {
     e.preventDefault();
     const {client, firestore} =this.props;
@@ -22,11 +24,19 @@ class ClientDetails extends Component {
     const clientUpdate ={
       balance: parseFloat(balanceUpdateAmount)
     }
-    
+
     // update in firestore
     firestore.update({collection: 'clients', doc: client.id}, clientUpdate)
 
   };
+
+  //Delete Client
+  handleDelete = () =>{
+    const { client, firestore,history } = this.props;
+    firestore.delete({collection: 'clients', doc: client.id})
+      .then(() => history.push('/'));
+  }
+
 
   render() {
     const { client } = this.props;
@@ -76,7 +86,7 @@ class ClientDetails extends Component {
                 <Link to={`/client/edit/${client.id}`} className="btn btn-dark">
                   Edit
                 </Link>
-                <button className="btn btn-danger">Delete</button>
+                <button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
               </div>
             </div>
           </div>
