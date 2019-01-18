@@ -42,11 +42,25 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   notify: notifyReducer,
-  settingS: settingReducer
+  settings: settingReducer
 });
 
+// check for4 setting in local storage
+
+if (localStorage.getItem('settings') == null) {
+  //default setting
+  const defaultSetting = {
+    disableBalanceAdd: true,
+    disableBalanceEdit: false,
+    allowRegister: false
+  };
+
+  //set to localStorage
+  localStorage.setItem('settings', JSON.stringify(defaultSetting));
+}
+
 //Create initial State
-const initialState = {};
+const initialState = { settings: JSON.parse(localStorage.getItem('settings')) };
 
 // create the store
 const store = createStoreWithFirebase(

@@ -48,6 +48,7 @@ class Settings extends Component {
                 <input
                   type="checkbox"
                   name="allowRegister"
+                  style={{ cursor: 'pointer' }}
                   checked={!!allowRegister}
                   onChange={this.handleAllowRegister}
                 />
@@ -57,6 +58,7 @@ class Settings extends Component {
                 <input
                   type="checkbox"
                   name="disableBalanceAdd"
+                  style={{ cursor: 'pointer' }}
                   checked={!!disableBalanceAdd}
                   onChange={this.handleDisableBalanceAdd}
                 />
@@ -66,6 +68,7 @@ class Settings extends Component {
                 <input
                   type="checkbox"
                   name="disableBalanceEdit"
+                  style={{ cursor: 'pointer' }}
                   checked={!!disableBalanceEdit}
                   onChange={this.handleDisableBalanceEdit}
                 />
