@@ -30,6 +30,8 @@ class NavBar extends Component {
   render() {
     const { isAuthenticated } = this.state;
     const { auth } = this.props;
+    const { allowRegister } = this.props.settings;
+
     return (
       <div
         className="navbar navbar-expand-md navbar-dark mb-4"
@@ -77,6 +79,20 @@ class NavBar extends Component {
                   >
                     Logout
                   </a>
+                </li>
+              </ul>
+            ) : null}
+            {allowRegister && !isAuthenticated ? (
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to="/login" className="nav-link">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/regiter" className="nav-link">
+                    Regiter
+                  </Link>
                 </li>
               </ul>
             ) : null}
