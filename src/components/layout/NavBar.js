@@ -90,8 +90,8 @@ class NavBar extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/regiter" className="nav-link">
-                    Regiter
+                  <Link to="/register" className="nav-link">
+                    Register
                   </Link>
                 </li>
               </ul>

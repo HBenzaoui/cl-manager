@@ -6,11 +6,19 @@ import { firebaseConnect } from 'react-redux-firebase';
 import { notifyUser } from '../../actions/notifyAction';
 import Alert from '../layout/Alert';
 
-export class Regiter extends Component {
+export class Register extends Component {
   state = {
     email: '',
     password: ''
   };
+
+  componentWillMount() {
+    const { allowRegister } = this.props.settings;
+
+    if (!allowRegister) {
+      this.props.history.push('/');
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -73,7 +81,7 @@ export class Regiter extends Component {
                 </div>
                 <input
                   type="submit"
-                  value="Regiter"
+                  value="Register"
                   className="btn btn-success btn-block"
                 />
               </form>
@@ -85,7 +93,7 @@ export class Regiter extends Component {
   }
 }
 
-Regiter.propTypes = {
+Register.propTypes = {
   firebase: PropTypes.object.isRequired,
   notify: PropTypes.object.isRequired,
   notifyUser: PropTypes.func.isRequired
@@ -100,4 +108,4 @@ export default compose(
     }),
     { notifyUser }
   )
-)(Regiter);
+)(Register);

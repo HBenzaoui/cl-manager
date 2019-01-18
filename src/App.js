@@ -13,7 +13,7 @@ import AddClient from './components/clients/AddClient';
 import ClientDetails from './components/clients/ClientDetails';
 import EditClient from './components/clients/EditClient';
 import Login from './components/auth/Login';
-import Regiter from './components/auth/Regiter';
+import Regiter from './components/auth/Register';
 import Settings from './components/settings/Settings';
 
 class App extends Component {
@@ -52,7 +52,7 @@ class App extends Component {
                 />
                 <Route
                   exact
-                  path="/regiter"
+                  path="/register"
                   component={UserIsNotAuthenticated(Regiter)}
                 />
                 <Route
