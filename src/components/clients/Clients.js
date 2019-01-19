@@ -49,7 +49,7 @@ export class Clients extends Component {
               </h5>
             </div>
           </div>
-          <table className="table table-striped table-hover ">
+          <table className="table table-striped table-hover">
             <thead className="thead-inverse">
               <tr>
                 <th>Name</th>
@@ -68,7 +68,7 @@ export class Clients extends Component {
                   <td
                     className={classnames({
                       'text-danger': client.balance > 0,
-                      'text-success': client.balance < 0,
+                      'text-success': client.balance < 0
                     })}
                   >
                     {parseFloat(client.balance).toFixed(2)} DA

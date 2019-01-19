@@ -15,6 +15,7 @@ import EditClient from './components/clients/EditClient';
 import Login from './components/auth/Login';
 import Regiter from './components/auth/Register';
 import Settings from './components/settings/Settings';
+import Suppliers from './components/suppliers/Suppliers';
 
 class App extends Component {
   render() {
@@ -44,6 +45,11 @@ class App extends Component {
                   exact
                   path="/client/edit/:id"
                   component={UserIsAuthenticated(EditClient)}
+                />
+                <Route
+                  exact
+                  path="/suppliers"
+                  component={UserIsAuthenticated(Suppliers)}
                 />
                 <Route
                   exact
