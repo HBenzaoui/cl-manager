@@ -30,7 +30,7 @@ class Suppliers extends Component {
               </h5>
             </div>
           </div>
-          <table className="table table-stripped table-hover">
+          <table className="table table-stripped table-hover ">
             <thead className="table-iverse">
               <tr>
                 <th>Supllier</th>
